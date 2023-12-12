@@ -136,3 +136,155 @@ Forma antiga
 }
 
 ```
+
+## Defferable Views
+
+### @defer
+
+Permite carregar um componente em modo Lazy Loading.
+
+```html
+  @defer {
+    <app-list/>
+  } @placeholder {
+    <p>Mostrar antes de carregar algo</p>
+  } @loading {
+    <p>Carregando...</p>
+  } @error {
+    <p>Carregando  falhou</p>
+  }
+```
+
+#### @placeholder
+
+É  primeira mensagem que vai aparecer. Ele pode receber alguns parâmetros.
+
+**minimum 5s** -
+
+```html
+  @placeholder(minimum 5s) {
+    <p>Content</p>
+  }
+````
+
+#### @loading
+
+Ele funciona quando o componente está sendo baixado. Ele pode receber alguns parâmetros.
+
+**after 5s** 
+
+**minimum 5s**
+
+#### Paramêtros para a função @defer
+
+**on idle** - É o padrão da função @defer
+
+**on timer()** - Adiciona um Delay 
+
+**on viewport** - Carrega de acordo com a Viewport
+
+**on interaction** - Carrega apartir de uma interação
+
+```html
+  <button #clicked>Click here!</button>
+
+  @defer(on interaction(clicked)) {
+    <app-list/>
+  } @placeholder {
+    <p>Mostrar antes de carregar algo</p>
+  } @loading {
+    <p>Carregando...</p>
+  } @error {
+    <p>Carregando  falhou</p>
+  }
+```
+**on immediate** - Carrega imediatamente
+
+**on prefetch** - Carrega de uma vez, sem passar pelo loading.
+
+```html
+  <button #clicked>Click here!</button>
+
+  @defer(on interaction(clicked); prefetch on idle) {
+    <app-list/>
+  } @placeholder {
+    <p>Mostrar antes de carregar algo</p>
+  } @loading {
+    <p>Carregando...</p>
+  } @error {
+    <p>Carregando  falhou</p>
+  }
+```
+
+### when
+
+Permite colocar uma expressão booleana ou obsevable no @defer que funcionará como trigger. Lembrando que os triggers
+são operações OR, então se eu tivesse um on interaction(trigger) e o when isTruVariable fosse false, mas o
+trigger fosse disparado iria carregar o componente.
+
+```html
+ @defer(when isTrueVariable) {
+    <app-list/>
+  } @placeholder {
+    <p>Mostrar antes de carregar algo</p>
+  } @loading {
+    <p>Carregando...</p>
+  } @error {
+    <p>Carregando  falhou</p>
+  }
+```
+
+## Template 
+
+### Text Interpolation
+
+```html
+  {{ value }}
+```
+
+### Property Bind
+
+
+```html
+  <input [disabled]="value" type="text">
+```
+
+### Attribute Binding
+
+```html
+  <p [attr.aria-label]="label"></p>
+```
+
+### Class and Style Binding
+
+```html
+  <div [class.theme-dark]="isDark" [style.display]="isDark ? 'none' : 'block' "></div>
+```
+
+### Event Binding
+
+```html
+  <div (click)="makeSomething()"></div>
+  <div (keydown.press)="makeSomething()"></div>
+```
+
+
+### Two-way Binding
+
+```html
+  <input name="name" [(ngModel)]="name">
+```
+
+### NgClass e NgStyle (Diretivas de atributos) 
+
+```html
+  <div [ngClass]="{ 'theme-dark': true }" [ngStyle]="{ 'backgroundColor': 'red' }"></div>
+```
+
+
+### Template Variables
+
+```html
+  <input #name name="name" type="text">
+  <h1>{{ name.value }}</h1>
+```
