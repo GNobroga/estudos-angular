@@ -1,0 +1,19 @@
+<h3>Forma Nova</h3>
+@switch(name) {
+  @case ('Gabriel') {
+    <p>É o Gabriel</p>
+  }
+  @case ('Lívia') {
+    <p>É a Lívia</p>
+  }
+  @default {
+    <p>Não é nenhum dos dois</p>
+  }
+}
+
+<h3>Forma antiga</h3>
+<div [ngSwitch]="name">
+  <div *ngSwitchCase="'Gabriel'">É o Gabriel</div>
+  <div *ngSwitchCase="'Lívia'">É a Lívia</div>
+  <div *ngSwitchDefault>Não é nenhum dos dois</div>
+</div>

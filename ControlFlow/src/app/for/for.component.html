@@ -1,0 +1,59 @@
+<!--
+  Forma nova
+
+    O track (obrigatório) oferece uma maneira de rastrear os elementos, melhorando a perfomance.
+    Ele é semelhante a colocar uma key no React quando usamos a função map pra criar componentes.
+-->
+<h3>Forma Nova</h3>
+
+@for (item of items; track item) {
+  <p>{{ item }}</p>
+}
+@empty {
+  <p>Não há nada para ser exibido</p>
+}
+
+<!--
+  Forma antiga
+
+    É opcional usar o trackBy, porém se usar é necessário passar um função que extrai o identificador do item.
+-->
+<h3>Forma Antiga</h3>
+
+<ng-container *ngFor="let item of items; trackBy: trackByName">
+  <li>{{ item }}</li>
+</ng-container>
+
+
+
+<!--
+  For e seus valores
+-->
+<h3>For e seus valores (Forma nova)</h3>
+
+@for (item of items;
+  let i = $index;
+  let c = $count;
+  let f = $first;
+  let l = $last;
+  let e = $even;
+  let o = $odd;
+  track item
+) {
+  <p>{{ item }} - {{ i }}</p>
+}
+
+
+<h3>For e seus valores (Forma antiga)</h3>
+<ng-container
+  *ngFor="let item of items;
+  let i = index;
+  let c = count;
+  let f = first;
+  let l = last;
+  let e = even;
+  let o = odd;
+  trackBy: trackByName"
+>
+  <li>{{ item }} é o ultimo? {{ l }}</li>
+</ng-container>

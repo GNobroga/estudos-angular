@@ -1,0 +1,31 @@
+<p>template-binding works!</p>
+
+<!-- Text interpolation -->
+<div>{{ name }}</div>
+
+<!-- Property bind -->
+<button (click)="buttonDisabled = !buttonDisabled" [disabled]="buttonDisabled">{{  buttonText }}</button>
+
+<!-- Attribute Bind -->
+<div [attr.arial-label]="name">Gabriel Cardoso Girarde</div>
+
+<!-- Class and Style Binding -->
+<p [class.background-red]="true">Está red</p>
+<p [style.display]="name.startsWith('Cabriel') ?  'none' : 'block'">Block or None</p>
+
+<!-- Event Binding -->
+<button style="color: red;" (click)="showAlert()">Click here</button>
+<input (keydown.shift.t)="showAlert()" />
+
+<!-- Two-way binding -->
+<input type="text" name="name" [(ngModel)]="name"/>
+
+
+<!-- NgClass e NgStyle -->
+<div [ngClass]="{ 'theme-dark': true }"></div>
+<div [ngStyle]="{ display: 'none' }"></div>
+
+
+<!-- Template variables -->
+<input type="text" name="lastName" #input (change)="name = input.value"/>
+Entrada {{ input.value }}

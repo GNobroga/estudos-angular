@@ -1,0 +1,20 @@
+
+<!-- Forma nova -->
+@if (name === 'Gabriel') {
+  <p>The name is Gabriel</p>
+}
+@else if (name === 'Lívia') {
+  <p>The name is Líva</p>
+}
+@else {
+  <p>Não é nenhum dos dois</p>
+}
+
+<!-- Forma antiga -->
+<ng-container *ngIf="name === 'Lívia' || name === 'Gabriel'; else NotLivia">
+  <p>The name is Lívia ou Gabriel</p>
+</ng-container>
+
+<ng-template #NotLivia>
+  <p>Não é Lívia</p>
+</ng-template>

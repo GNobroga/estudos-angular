@@ -1,0 +1,24 @@
+:host-context(.dark-mode) {
+
+  * {
+    background-color: black;
+    color: white;
+  }
+}
+
+:host-context(.light-mode) {
+
+  * {
+    background-color: red;
+    color: white;
+  }
+}
+
+:host {
+
+  .container {
+    height: 100vh;
+  }
+}
+
+

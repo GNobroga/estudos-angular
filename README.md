@@ -1,3 +1,13 @@
-# Novidades
+# Angular CLI
 
-Repositório para conter as novidades lançadas na versão 17 do Angular.
+Para ver todos os comandos 
+
+```bash
+    ng --help
+```
+
+Para ver todos os comandos de generate
+
+```
+    ng g --help
+```
