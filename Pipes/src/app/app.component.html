@@ -1,0 +1,14 @@
+
+<div class="wrapper">
+  <div>{{ date() | date: 'dd/MM/yyyy' : 'pt-BR'}}</div>
+  <div>{{ 'Gabriel' | uppercase }}</div>
+  <div>{{ 'Gabriel' | lowercase }}</div>
+  <div>{{ { name: 'Gabriel' } | json }}</div>
+  <div>{{ observable$ | async }}</div>
+  <div>{{ 200 | currency: 'BRL' }}</div>
+  <!-- 1.minimo-casa-decimal-maximo-casadecimal -->
+  <div>{{ 200.5000 | number: '1.3-6' }}</div>
+  <!-- 1.minimo-casa-decimal-maximo-casadecimal -->
+  <div>{{ 0.15 | percent }}</div>
+  <p>{{ "ooooooooooooooooooooooooooooooooooooooooooooooooo" | customPipe: 10 }} </p>
+</div>

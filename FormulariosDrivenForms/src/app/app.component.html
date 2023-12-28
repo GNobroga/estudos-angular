@@ -1,0 +1,61 @@
+<h1>Driven Forms</h1>
+<form #form="ngForm">
+  <div>
+    <label>Username</label>
+    <!-- Forma 1 -->
+    <input type="text" name="username" #username="ngModel" [ngModel]="username.value">
+  </div>
+  <div>
+    <label>Password</label>
+    <input type="text" name="password" #password="ngModel" [ngModel]="password.value">
+  </div>
+  <div>
+    <label>Confirmation</label>
+    <!-- Forma 2 -->
+    <input type="text" name="confirmation" [(ngModel)]="confirmation">
+  </div>
+</form>
+
+{{ form.value | json }}
+
+<!-- INPUT RADIO -->
+
+<input type="radio" name="gender" value="Male" [(ngModel)]="gender"/>
+
+<input type="radio" name="gender" value="Female" [(ngModel)]="gender" />
+
+{{ gender }}
+
+<hr/>
+
+<!-- INPUT CHECKBOX -->
+
+<form #form2="ngForm">
+  <div>
+    <label>Angular</label>
+    <input type="checkbox" name="angular" value="angular" ngModel>
+  </div>
+  <div>
+    <label>React</label>
+    <input type="checkbox" name="react" value="react" ngModel>
+  </div>
+</form>
+
+{{ form2.value | json }}
+
+
+<hr/>
+
+<!-- SELECT -->
+
+<form #form3="ngForm">
+  Cursos
+  <select ngModel name="eletronico">
+    @for (eletronic of eletronics; track eletronic) {
+      <!-- NgValue permite adicionar valores no formato de objeto -->
+      <option [ngValue]="eletronic">{{ eletronic }}</option>
+    }
+  </select>
+</form>
+
+{{ form3.value | json }}

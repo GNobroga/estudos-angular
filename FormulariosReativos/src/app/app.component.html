@@ -1,0 +1,77 @@
+<h1>Reactive Forms</h1>
+
+<!-- Form Control -->
+
+<input name="username" [formControl]="username"/>
+
+{{ username.value }}
+
+<br/>
+<hr>
+<br/>
+
+<h2>Form Group</h2>
+<!-- Form Groups -->
+
+<div [formGroup]="login" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: start;">
+  <input type="email" name="email" formControlName="email" placeholder="E-mail">
+  <input type="password" name="password" formControlName="password" placeholder="Password">
+  <div formGroupName="address">
+      <input type="text" placeholder="street" name="street" formControlName="street">
+      <input type="text" placeholder="number" name="number" formControlName="number">
+  </div>
+</div>
+
+{{ login.value | json }}
+
+
+<hr/>
+<br>
+<h2>Form Array</h2>
+
+<div>
+  <!--
+
+    Form Array
+
+      Só funciona dentro de 1 form group
+  -->
+
+  <form [formGroup]="courses" (ngSubmit)="submit()">
+    <div formArrayName="items" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: start;">
+      @for (item of courses.value.items; let i = $index; track i) {
+        <input type="text" [formControlName]="i" />
+      }
+      {{ courses.value | json }}
+    </div>
+  </form>
+</div>
+
+
+<hr>
+<br>
+
+<h2>Form Builder</h2>
+<div [formGroup]="formWithFormBuilder">
+  <div>
+    <label for="">Name</label>
+    <input type="text" formControlName="name" #name>
+    @if (formWithFormBuilder.get('name')?.hasError('invalidText')) {
+      <span>{{ formWithFormBuilder.get('name')?.getError('message')}}</span>
+    }
+  </div>
+  <div>
+    <label for="">Name</label>
+    <input type="text" formControlName="lastName">
+  </div>
+  @if (formWithFormBuilder.get('name')?.valid) {
+    <button (click)="addBrother(name.value)">Push a brother</button>
+  }
+  <div formArrayName="brothers">
+    <input
+      *ngFor="let brother of formWithFormBuilder.value.brothers; let key = index"
+      [formArrayName]="key"
+      [value]="brother"
+    >
+  </div>
+</div>
