@@ -1,0 +1,10 @@
+<div
+  [style.background-color]="backgroundColor"
+  [style.color]="backgroundColor !== '' ? 'white' : '3333'"
+>
+  <h1>Componente 1</h1>
+  <h2>{{ title }}</h2>
+  <p>{{ description }} </p>
+</div>
+
+<button (click)="changeColorAction()">Pintar componente</button>

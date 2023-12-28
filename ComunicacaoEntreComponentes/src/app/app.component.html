@@ -1,0 +1,10 @@
+<app-first-componente
+  title="Novo produto"
+  description="Smartphone de qualidade"
+  [backgroundColor]="backgroundColor"
+  (changeColor)="onChangeColor('blue')"
+/>
+
+<app-second-componente
+  [description]="'A cor agora é essa ' + backgroundColor"
+/>
