@@ -1,0 +1,28 @@
+<h1><mark>Consumer product-service</mark></h1>
+
+<h2>Forma 1</h2>
+<ul>
+  <!-- async espera a resposta de observables, promises, etc. -->
+  @for (task of tasks(); track task.id) {
+    <li>Title - {{ task.title }}</li>
+  }
+  @empty {
+    <li>Não há nenhuma tarefa cadastrada</li>
+  }
+</ul>
+
+<h2>Forma 2</h2>
+<ul>
+
+  @if (tasks(); as tasks) {
+    @for (task of tasks; track task.id) {
+      <li>Title - {{ task.title }}</li>
+    }
+    @empty {
+      <li>Não há nenhuma tarefa cadastrada</li>
+    }
+  }
+
+</ul>
+
+

@@ -1,0 +1,23 @@
+<div>
+    hello world
+
+    <!--
+      É possível selecionar os elementos que irão entrar dentro do ng-content usando atributo select
+
+      Exemplos:
+
+        <ng-content select="[title]"></ng-content> (usando com ligação)
+
+            ou
+
+        <ng-content select=".title"></ng-content> (usando classe)
+
+            ou
+
+        <ng-content select="#footer"></ng-content> (usando id)
+    -->
+
+    <ng-content select="[title]"></ng-content>
+    <ng-content select=".content"></ng-content>
+    <ng-content select="#footer"></ng-content>
+</div>

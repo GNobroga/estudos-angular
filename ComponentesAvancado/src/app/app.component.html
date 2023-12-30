@@ -1,0 +1,55 @@
+<h1><mark>Usando o ng-content</mark></h1>
+
+<app-first-content>
+  <!-- Forma de selecionar 1 (seleciona pela classe) -->
+  <p class="content">Conteúdo do texto</p>
+  <!-- Forma de selecionar 2 -->
+  <h2 title>Título</h2>
+  <!-- Forma de selecionar 3 (seleciona pelo id)-->
+  <footer id="footer">
+    <p>Footer</p>
+  </footer>
+</app-first-content>
+
+<hr/>
+
+<h1><mark>Host elements - Pra ligar propriedades e eventos</mark></h1>
+<p>
+  A propriedade host contida dentro do componente refere-se ao próprio componente e serve pra aplicar atributos para ele, seja atributos
+  de acessibilidade ou até mesmo eventos. É basicamente uma forma nova de ser usar o <strong>HostBinding</strong> e <strong>HostListener</strong>
+</p>
+<app-second-content/>
+
+<hr/>
+
+<h1><mark>Ciclo de vida</mark></h1>
+<dl>
+  <dt>OnChanges</dt>
+  <dd>Sempre que um valor externo (através de input) entra para o componente a função <strong>ngOnChanges</strong> é acionada.</dd>
+
+  <dt>OnInit</dt>
+  <dd><strong>ngOnInit</strong> é acionado quando o componente é criado, como se fosse o constructor</dd>
+
+  <dt>DoCheck</dt>
+  <dd><strong>ngDoCheck</strong> é acionado sempre que um valor é modificado dentro do componente (Ex: valor de uma tag input)</dd>
+
+  <dt>AfterViewInit</dt>
+  <dd>É chamado após a inicialiazação da View, ou seja, depois de renderizar os elementos.</dd>
+
+  <dt>AfterContentInit</dt>
+  <dd>É chamado após a inicialiazação dos elementos de dentro do ng-content</dd>
+
+
+  <dt>AfterContentChecked</dt>
+  <dd>Ele funciona como o DoCheck, mas aguardando todos as entradas serem processadas</dd>
+
+  <dt>OnDestroy</dt>
+  <dd>Executa sempre quando o componente é destruido</dd>
+
+  <dt>ChangeDetectionStrategy.OnPush</dt>
+  <dd>Permite melhorar a perfomance do Angular para entrade Input nos componentes.</dd>
+
+</dl>
+<app-third-content>
+  <p #text>Eu sou o Text</p>
+</app-third-content>
