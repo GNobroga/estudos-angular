@@ -1,0 +1,19 @@
+<h1>Otimização de imagens</h1>
+
+<!-- Ao usar o ngSrc o Angular otimizará a imagem
+
+  Properties da tag img:
+
+    priority - Fala pro navegador carregar a imagem com prioridade
+    loading - Fala pra carregar em lazy loading.
+    ngSrc - É uma forma mais otimizada para linkar uma imagem a uma tag img.
+-->
+<img alt="Uma imagem qualquer" ngSrc="assets/goku.png" width="400" height="400" priority>
+
+
+<!--
+  O fill fará com que a imagem ocupe 100% de largura e 100% de altura.
+-->
+<div style="height: 400px; width: 250px;">
+  <img alt="Uma imagem qualquer" ngSrc="image.png" fill priority>
+</div>

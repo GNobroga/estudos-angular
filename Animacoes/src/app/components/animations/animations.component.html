@@ -1,0 +1,14 @@
+<h1>Animações</h1>
+
+<main class="space-all">
+  <!--
+    Para adicionar uma animação usa-se [@<<name>>] e é possível atribuir um valor
+    para acionar um trigger específico.
+  -->
+  <div class="ball" [@move-ball]="moveIn()"></div>
+</main>
+
+<div class="button-group">
+  <button (click)="moveIn.set('left')"><<</button>
+  <button (click)="moveIn.set('right')">>></button>
+</div>

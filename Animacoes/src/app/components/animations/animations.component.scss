@@ -1,0 +1,33 @@
+/* :host(:hover)
+  Host é o próprio componente
+*/
+
+:host {
+  .space-all {
+    padding: 0.8rem;
+  }
+
+  .ball {
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: white;
+      height: 50%;
+      width: 3px;
+      left: 50%;
+    }
+  }
+
+  .button-group {
+    display: flex;
+    gap: 1rem;
+  }
+
+}
