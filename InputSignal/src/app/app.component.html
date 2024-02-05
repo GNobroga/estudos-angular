@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of users(); track user) {
+      <tr>
+        <td>{{ user  }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
