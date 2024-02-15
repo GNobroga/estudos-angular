@@ -1,0 +1,15 @@
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { PaassingTemplateRefComponent } from './components/paassing-template-ref/paassing-template-ref.component';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, PaassingTemplateRefComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
+})
+export class AppComponent {
+
+}
