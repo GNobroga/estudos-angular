@@ -118,3 +118,7 @@ O ContentChild permite pegar elementos que são passados para dentro do componen
     @ContentChild('h1')
     element!: ElementRef;
 ```
+
+--------------------------------------------
+
+

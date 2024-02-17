@@ -1,27 +1,116 @@
-# FormulariosDrivenForms
+# Formularios Driven Forms
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+## ngModel
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```html
 
-## Code scaffolding
+  <input #input="ngModel" ngModel (ngModelChange)="OnChange($event)">
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  <div *ngIf="input.dirty && input.touched">
 
-## Build
+    <span *ngIf="input.hasError('required')">O input é requerido.</span>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  </div>
 
-## Running unit tests
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**ngModelChange** = Permite pegar os dados de entrada quando se utiliza o NgModel.
 
-## Running end-to-end tests
+## ngForm
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```html
+  <form #f="ngForm">  
+    <input name="name" ngModel>
+  </form>
+```
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## ngFormOptions
+
+Permite especificar configurações para o ngModel e ngForm.
+
+**change** - Aplica as validações ao alterar o estado de qualquer input (default)
+
+**submit** - Aplica as validações ao clicar em enviar.
+
+**blur** - 
+
+```html
+  <form #f="ngForm" [ngFormOptions]="{ updateOn: 'change' }">  
+    <input name="name" ngModel>
+  </form>
+```
+
+
+## ngModelGroup
+
+Permite organizar os inputs em grupos
+
+Ao adicionar ngModelGroup será criado um propriedade com o nome do grupo.
+
+Além disso, o ngModelGroup tem um exportAs.
+
+```html
+
+  <form #f="ngForm" [ngFormOptions]="{ updateOn: 'change' }">  
+    <input name="name" ngModel>
+
+    <div ngModelGroup="nome" #grupo="ngModelGroup">
+        <input name="name1" ngModel>
+        <input name="name2" ngModel>
+    </div>
+</form>
+
+```
+
+## Utilizando NgForm com Custom Component
+
+Com a configuração abaixo informamos para o componente utilizar a instância mais próxima do ngForm. Ou seja, ao fazer isso eu linko as propriedades de dentro do input com o ngForm mais próximo dele.
+
+```ts
+@Component({
+  selector: 'app-my-component',
+  template: `<input name="name" ngModel/>`,
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
+})
+export class FormUserComponent {}
+```
+
+```html
+  <form #f="ngForm">
+    <app-my-component>
+  </form>
+```
+
+
+## Criar validadores customizados
+
+É uma diretiva que permite validar Driven Forms, seja um ngForm, ngModel, ngModelGroup, etc. O erro que tiver pegamos com o getError.
+
+```ts
+@Directive({
+  selector: '[appInvalidTextValidator]',
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useExisting: InvalidTextValidatorDirective,
+      multi: true
+    }
+  ]
+})
+export class InvalidTextValidatorDirective implements Validator {
+
+  validate(control: AbstractControl): ValidationErros | null {
+
+    return control.value.includes('Gabriel') ? null : { invalidText: true };
+  }
+}
+```
+
+
+```html
+   <form #f="ngForm" [ngFormOptions]="{ updateOn: 'change' }">  
+    <input name="name" ngModel appInvalidTextValidator>
+  </form>
+```
