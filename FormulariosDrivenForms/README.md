@@ -36,9 +36,12 @@ Permite especificar configurações para o ngModel e ngForm.
 
 **blur** - 
 
+
+**standalone** - Permite avisar para o ngForm nao adiciona o input dentro do value do ngForm.
+
 ```html
   <form #f="ngForm" [ngFormOptions]="{ updateOn: 'change' }">  
-    <input name="name" ngModel>
+    <input name="name" ngModel [ngFormOptions]={ standalone: true }>
   </form>
 ```
 
@@ -84,7 +87,7 @@ export class FormUserComponent {}
 ```
 
 
-## Criar validadores customizados
+## Criar validadores customizados (Sincronos)
 
 É uma diretiva que permite validar Driven Forms, seja um ngForm, ngModel, ngModelGroup, etc. O erro que tiver pegamos com o getError.
 
@@ -107,10 +110,27 @@ export class InvalidTextValidatorDirective implements Validator {
   }
 }
 ```
+## Criar validadores customizados (Assincronos)
 
 
-```html
-   <form #f="ngForm" [ngFormOptions]="{ updateOn: 'change' }">  
-    <input name="name" ngModel appInvalidTextValidator>
-  </form>
+Semelhante a forma Sincrona, porém podemos usar o pending do NgModel, pra verificar se a validação já foi concluída ou se está processando permitindo que adicionemos lógica nesse meio.
+
+```ts
+@Directive({
+  selector: '[appInvalidTextValidator]',
+  providers: [
+    {
+      provide: NG_ASYNC_VALIDATORS,
+      useExisting: forwardRed(() => InvalidTextValidatorDirective),
+      multi: true
+    }
+  ]
+})
+export class InvalidTextValidatorDirective implements AsyncValidator {
+
+  validate(control: AbstractControl): ValidationErros | null {
+
+    return control.value.includes('Gabriel') ? null : { invalidText: true };
+  }
+}
 ```
