@@ -1,0 +1,27 @@
+
+<form #form="ngForm">
+  <fieldset>
+    <legend>CRUD</legend>
+    <input type="text" name="name" placeholder="Nome" ngModel>
+    <input type="number" name="price" placeholder="Preço" ngModel>
+    <button (click)="addProduct(form.value)">Cadastrar</button>
+  </fieldset>
+</form>
+
+<input type="text" #search>
+<button (click)="searchProduct(search.value)">Pesquisar</button>
+
+<ul>
+@for (product of products; track product) {
+  <li>{{ product.id }} {{ product.name }} and {{ product.price }} <button (click)="deleteProduct(product.id)">Deletar</button></li>
+}
+</ul>
+
+
+<h1>Eletrônicos</h1>
+
+<ul>
+  @for (eletronic of eletronics; track eletronic) {
+    <li>{{ eletronic.name }}</li>
+  }
+</ul>

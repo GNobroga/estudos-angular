@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+fieldset {
+  max-width: 600px;
+}
+
+input {
+  display: block; 
+  margin: .5rem 0;
+  padding: 1rem;
+  width: 100%;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: 1rem;
+}
